@@ -1,0 +1,209 @@
+---
+title: "Latencies & Repo Duplication from Grok"
+format: html
+---
+
+::: {.callout-note}
+
+Followed repo clone, Supabase setup (`surveydown` config + latencies event sql commands) -- left the latencies table "unsecure"
+
+:::
+
+I'll start by inspecting the existing GitHub repo so I can see what to copy and how Supabase is already wired for latency recording.The repo page itself didn’t yield much, so I’ll pull the file tree and related repos next.The repo is an R/Quarto survey app. Next I’ll read the Shiny app, survey files, and env config, plus the related `responselatencies` repo.Sibling repos exist for Edwards and the original latency study. I’ll check those plus surveydown’s Supabase setup so the fork instructions are accurate.`responselatenciesKT` is already a surveydown Shiny app with millisecond page-latency tracking and a write path into Supabase. You also already have the two sibling studies (`responselatencies` and `responselatenciesE`), so the clean move is a **new repo + new tables** (or a new Supabase project), not a GitHub “Fork” button. GitHub will not let you fork your own repo in the usual way.
+
+## 1. Copy the repo into a new project
+
+From a terminal (after creating an empty GitHub repo, e.g. `responselatenciesNEW`):
+
+```bash
+git clone https://github.com/jtkulas/responselatenciesKT.git responselatenciesNEW
+cd responselatenciesNEW
+
+git remote set-url origin https://github.com/jtkulas/responselatenciesNEW.git
+git remote -v
+
+# optional: start clean history
+# git checkout --orphan main-new && git add -A && git commit -m "Initial copy from responselatenciesKT"
+```
+
+Then push:
+
+```bash
+git push -u origin main
+```
+
+Rename the RStudio project file while you are at it (`responselatencies.Rproj` → something matching the new study).
+
+Do **not** reuse the existing Supabase tables if this is a different study. KT already writes survey answers through surveydown and latency rows into `latency_events`. Mixing projects in one table is painful later.
+
+## 2. What the current repo actually does
+
+Two files matter.
+
+**`survey.qmd`**  
+Kuncel-first / Edwards-second counterbalance: welcome → Kuncel practice → sampled KT items → interlude → Edwards practice → same items on the 9-point scale → end. Items come from `300itemstems.csv` + `KuncelTellegen Q Sort Items - Sheet1.csv`.
+
+**`app.R`** (this is the latency + Supabase piece):
+
+1. `db <- sd_db_connect()` opens the surveydown Postgres pool (reads a local `.env`).
+2. Browser JS uses `performance.now()` and a `MutationObserver` on `.sd-page`. On **Next**, it sends `{ page_id, latency_ms }`.
+3. The server inserts into `latency_events`:
+   - `session_token`
+   - `page_id`
+   - `latency_ms`
+   - `recorded_at`
+4. `sd_server(db = db)` must stay last. That writes the actual survey answers.
+
+`app_prev.R` is the preview/local variant (`sd_db_connect(ignore = TRUE)`). Use that while editing questions; use `app.R` when you want data to land in Supabase.
+
+## 3. Slight alterations for a new project
+
+Minimum set of files to touch:
+
+| File | Why |
+|---|---|
+| `survey.qmd` | New instructions, items, scales, page IDs |
+| item CSVs | New item pool / categories |
+| `app.R` | Keep the latency JS unless page structure changes |
+| `.Renviron` / `.env` | **New** DB credentials / table name |
+| shinyapps `rsconnect/` folder | Point at a new app name, not the KT deploy |
+
+Practical rules:
+
+- Keep page IDs unique and reasonably short. surveydown creates one column per question; long IDs have caused Supabase write failures.
+- If you add/rename pages, latency will automatically key off the new `id` on `.sd-page`. No JS change needed unless you stop using surveydown’s Next button.
+- If the new study is not KT/Edwards, delete or replace the practice pages and the `slice_sample()` category logic rather than leaving dead code.
+- In `survey.qmd` YAML, use `mode: preview` while building and `mode: database` when collecting.
+
+If you tell me what the new project is (new items? new scale? no counterbalance? different N of items?), I can draft the exact `survey.qmd` diff.
+
+## 4. Supabase reminder (responses + latency)
+
+You currently have **two different credential styles** in the KT family of repos. Only one is what `app.R` uses.
+
+### A. Survey answers (surveydown’s path)
+
+This is the official surveydown + Supabase setup.
+
+1. [supabase.com](https://supabase.com) → **New project**  
+   - Name it after the new study  
+   - Strong DB password  
+   - Region close to you / respondents  
+
+2. Project → **Connect** → **Transaction pooler**. Copy:
+   - host (`*.pooler.supabase.com`)
+   - port `6543`
+   - dbname `postgres`
+   - user `postgres.<project-ref>`
+   - password (the one you set)
+
+3. In the new R project:
+
+```r
+install.packages("surveydown")  # if needed
+library(surveydown)
+
+sd_db_config()   # prompted: host, port, dbname, user, password, table
+```
+
+That writes a **`.env`** file, typically:
+
+```
+SURVEYDOWN_HOST=aws-0-xx-xxxx-x.pooler.supabase.com
+SURVEYDOWN_PORT=6543
+SURVEYDOWN_DBNAME=postgres
+SURVEYDOWN_USER=postgres.xxxxxxxx
+SURVEYDOWN_PASSWORD=your-password
+SURVEYDOWN_TABLE=responses
+```
+
+Use a **new table name** if this project shares a Supabase instance with KT, e.g. `responses_newstudy`.
+
+4. `app.R` already has the right connect call:
+
+```r
+db <- sd_db_connect()
+```
+
+5. Run the app, click past the first page once. surveydown **creates the responses table** for you. You do not pre-create that table.
+
+6. Pull data later with:
+
+```r
+db <- sd_db_connect()
+dat <- sd_get_data(db)
+```
+
+### B. Latency events (your custom table)
+
+surveydown will **not** create `latency_events`. That insert is raw SQL in `app.R`, so the table must exist first.
+
+In the Supabase SQL editor:
+
+```sql
+create table if not exists public.latency_events (
+  id            bigint generated by default as identity primary key,
+  session_token text,
+  page_id       text,
+  latency_ms    integer,
+  recorded_at   timestamptz default now()
+);
+
+create index if not exists latency_events_session_idx
+  on public.latency_events (session_token);
+```
+
+If this project shares the KT Supabase project, use a **new table name** and change the `INSERT` in `app.R` to match (`latency_events_newstudy`, etc.).
+
+The working connection for that insert is `db$db` from `sd_db_connect()` (Postgres user via the pooler), **not** the REST URL/key.
+
+### C. The leftover `.Reviron`
+
+KT’s committed `.Reviron` holds `SUPABASE_URL` + a publishable key. Current `app.R` never reads those. `sd_db_connect()` wants `.env` with host/user/password/table.
+
+Also:
+
+- `.gitignore` only ignores `.env`, which is why `.Reviron` got committed.
+- The older `responselatencies` `app.R` hard-codes the pooler password in source. That should not be copied forward. Rotate that password if it is still live.
+
+Recommended hygiene for the new repo:
+
+```gitignore
+.env
+.Renviron
+.Reviron
+rsconnect/
+```
+
+On shinyapps.io, set the same values as environment variables in the app’s Settings rather than committing them.
+
+## 5. Quick local check that latency is actually landing
+
+```r
+library(DBI)
+db <- sd_db_connect()
+
+DBI::dbGetQuery(db$db, "
+  select page_id, latency_ms, recorded_at
+  from latency_events
+  order by recorded_at desc
+  limit 20
+")
+```
+
+If responses save but this errors with `relation "latency_events" does not exist`, the SQL in section 4B was not run on this project.
+
+If both fail, `sd_db_connect()` is not seeing `.env` (wrong working directory, or you only have `.Reviron`).
+
+## 6. Security note, then what I need from you
+
+Do not copy credentials from the old repos into the new one. Create a new project (or at least new tables), run `sd_db_config()` again, and keep `.env` untracked.
+
+To actually rewrite the survey for the new project, send:
+
+1. New repo name
+2. What changes from KT (items, scales, order, number of pages)
+3. Whether you want a **new Supabase project** or a new table in the existing one
+4. Whether this should stay Kuncel/Edwards-shaped or become a different instrument
+
+I can then give you a concrete `survey.qmd` / `app.R` patch instead of the generic map above.

@@ -1,0 +1,12 @@
+name: responselatenciesNEWKT
+title: responselatenciesNEWKT
+username: jtkulas
+account: jtkulas
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17960203
+bundleId: 12581674
+url: https://jtkulas.shinyapps.io/responselatenciesNEWKT/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -2998,7 +2998,6 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
 ```{r}
 # https://x.com/i/grok/share/1DcUBUJovlpHmIbykgnGC6uGO
 
@@ -3008,15 +3007,11 @@ sd_question(
   label = " ",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3051,7 +3046,6 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
 ```{r}
 # https://x.com/i/grok/share/1DcUBUJovlpHmIbykgnGC6uGO
 
@@ -3061,15 +3055,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3129,7 +3119,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(PSitem1$Text))
 
@@ -3139,15 +3129,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3182,7 +3168,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 
 sd_question(
@@ -3191,15 +3177,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3234,7 +3216,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 
 sd_question(
@@ -3243,15 +3225,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3287,7 +3265,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(Witem2$Text))
 
@@ -3297,15 +3275,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3340,7 +3314,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(OPhook1$Text))
 
@@ -3350,15 +3324,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3393,7 +3363,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(OPhook2$Text))
 
@@ -3403,15 +3373,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3446,7 +3412,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(NegHook1$Text))
 
@@ -3456,15 +3422,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3499,7 +3461,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(NegHook2$Text))
 
@@ -3509,15 +3471,11 @@ sd_question(
   label = " ",#label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3552,7 +3510,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(Flat1$Text))
 
@@ -3562,15 +3520,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3604,7 +3558,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(Flat2$Text))
 
@@ -3614,15 +3568,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3656,7 +3606,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(NegLinear1$Text))
 
@@ -3666,15 +3616,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3709,7 +3655,7 @@ sd_next()
 
 How desirable is this characteristic? 
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(NegLinear2$Text))
 
@@ -3719,15 +3665,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3762,7 +3704,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(PosHook1$Text))
 
@@ -3772,15 +3714,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
@@ -3815,7 +3753,7 @@ sd_next()
 
 How desirable is this characteristic?
 
-![](desire.JPG)
+
 ```{r}
 ## cat(paste(PosHook2$Text))
 
@@ -3825,15 +3763,11 @@ sd_question(
   label = " ",#  label = "How desirable is this characteristic?",
   row="",
   option = c(
-    'Extrеmelγ'    = '1',
-    'Stronglγ'     = '2',
-    'Modеrаtelγ'   = '3',
-    'Mildlγ'       = '4',
-    'Neutral'        = '5',
-    'Mildly'         = '6',
-    'Moderately'     = '7',
-    'Strongly'       = '8',
-    'Extremely'      = '9'
+    'Very Undesirable'    = '1',
+    'Undesirable'       = '2',
+    'Neutral'           = '3',
+    'Desirable'         = '4',
+    'Very Desirable'    = '5'
   ))
 
 ```
